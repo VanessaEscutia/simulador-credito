@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Crédito Personal Banamex</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Simulador de Crédito Personal</h1>
+      <p class="subtitle">Banco Banamex</p>
+    </header>
+
+    <section class="form-section">
+      <form id="form-credito">
+        <div class="form-group">
+          <label for="monto">Monto del crédito ($)</label>
+          <input type="number" id="monto" min="1" step="0.01" placeholder="Ej. 100000" required>
+        </div>
+
+        <div class="form-group">
+          <label for="tasa">Tasa de interés anual (%)</label>
+          <input type="number" id="tasa" min="0.1" step="0.01" placeholder="Ej. 15.00" required>
+        </div>
+
+        <div class="form-group">
+          <label for="plazo">Plazo (meses)</label>
+          <select id="plazo">
+            <option value="6">6 meses</option>
+            <option value="12" selected>12 meses</option>
+            <option value="18">18 meses</option>
+            <option value="24">24 meses</option>
+            <option value="36">36 meses</option>
+            <option value="48">48 meses</option>
+            <option value="60">60 meses</option>
+          </select>
+        </div>
+
+        <button type="button" id="btn-calcular">Calcular Simulación</button>
+      </form>
+    </section>
+
+    <section class="acciones-exportacion">
+      <h2>Acciones de Exportación</h2>
+      <div class="botones-exportacion">
+        <button id="btn-excel" class="btn btn-excel"> Exportar a Excel</button>
+        <button id="btn-pdf" class="btn btn-pdf"> Descargar PDF</button>
+        <button id="btn-imprimir" class="btn btn-imprimir"> Imprimir Pantalla</button>
+      </div>
+    </section>
+
+    <section class="resultado-section" id="resultado-section" style="display:none;">
+      <h2>Tabla de Amortización</h2>
+      <div class="contenedor-tabla">
+        <table id="tabla-amortizacion">
+          <thead>
+            <tr>
+              <th>Período</th>
+              <th>Saldo Insoluto</th>
+              <th>Amortización</th>
+              <th>Interés</th>
+              <th>IVA (16%)</th>
+              <th>Pago Total</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Vanesssa Escutia Simulador de Crédito</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
